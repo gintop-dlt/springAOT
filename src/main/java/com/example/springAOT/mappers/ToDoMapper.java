@@ -9,5 +9,7 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.WARN)
 public interface ToDoMapper {
+    @Mapping(source = "content", target = "toDoContent")
+    @Mapping(target ="idAndTitle",expression = "java(todo.getId()+ \" \" + todo.getTitle())" )
     ToDoResponse ToDotoResponse (ToDo todo);
 }

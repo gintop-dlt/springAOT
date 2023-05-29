@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 public class ToDoResponse {
     private Long id;
     private String title;
-    private String content;
+    private String toDoContent;
+    private String idAndTitle;
     public ToDoResponse(){
 
     }
