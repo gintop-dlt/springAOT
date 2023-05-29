@@ -1,0 +1,40 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.0'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'org.hibernate.orm' version '6.1.1.Final'
+	id 'org.graalvm.buildtools.native' version '0.9.20'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+graalvmNative {
+	metadataRepository {
+		moduleToConfigVersion.put("org.hibernate.orm:hibernate-core","6.1.1")
+		version = "0.2.6"
+	}
+}
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.postgresql:postgresql'
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	compileOnly 'org.projectlombok:lombok'
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok-mapstruct-binding
+	annotationProcessor  'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+	// https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+	annotationProcessor 'org.projectlombok:lombok'
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:1.5.5.Final"
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
